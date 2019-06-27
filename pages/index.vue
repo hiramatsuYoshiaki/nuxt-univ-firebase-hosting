@@ -9,7 +9,13 @@
         Nuxt.js Universal SSR
       </h2>
       <h2 class="subtitle">
-        GitHub + Netlify
+        Circle CI + Firebase
+      </h2>
+      <h2 class="subtitle">
+        Nuxt-univ-firebase-hosting
+      </h2>
+      <h2 class="subtitle">
+        NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
       </h2>
     </div>
     <div class="content">

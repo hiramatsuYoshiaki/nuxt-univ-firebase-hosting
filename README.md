@@ -1,4 +1,7 @@
-# nuxt-univ-app1
+# Nuxt-univ-Firebase-hostting 
+NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。 
+ 
+# nuxt-univ-app1 
 > My peachy Nuxt.js project
 ## reate-nuxt-app
 ```

@@ -11,6 +11,9 @@
       <h2 class="subtitle">
         GitHub + Circle CI + firebase
       </h2>
+      <h2 class="subtitle">
+        NUXTでCircleCIでFirebaseにホスティングする。
+      </h2>
     </div>
     <div class="content">
       <!-- <section>

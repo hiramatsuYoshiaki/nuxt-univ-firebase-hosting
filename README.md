@@ -1,3 +1,5 @@
+#nuxt-univ-firebase-hosting
+NUXTでCircleCIでFirebaseにホスティングする。
 # nuxt-univ-app1
 > My peachy Nuxt.js project
 ## reate-nuxt-app

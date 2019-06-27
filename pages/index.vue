@@ -9,11 +9,11 @@
         Nuxt.js Universal SSR
       </h2>
       <h2 class="subtitle">
-        GitHub + Netlify
+        GitHub + Circle CI + firebase
       </h2>
     </div>
     <div class="content">
-      <section>
+      <!-- <section>
         <a class="github sec-link" href="https://github.com/hiramatsuYoshiaki/nuxt-univ-app1">
           <h3>GitHub Code</h3>
           <div class="word-wrap">hiramatsuYoshiaki/nuxt-univ-app1</div>
@@ -27,15 +27,15 @@
           <h3>GitHub Pages</h3>
           <div class="word-wrap">https://hiramatsuyoshiaki.github.io/nuxt-univ-app1/</div>
         </a>
-      </section>
-      <section>
+      </section> -->
+      <!-- <section>
         <a class="netlify sec-link" href="https://nuxt-univ-app1.netlify.com/">
           <h3>Netlify</h3>
           <div class="word-wrap">Yoshiaki Hiramatsu team</div>
           <div class="word-wrap">nuxt-univ-app1</div>
           <div class="word-wrap">https://nuxt-univ-app1.netlify.com/</div>
         </a>
-      </section>
+      </section> -->
     </div>
     <transition name="mainCon" appear>
       <div class="content-footer">

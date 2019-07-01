@@ -5,7 +5,7 @@
   "author": "hiramatsu",
   "private": true,
   "scripts": {
-    "dev": "nuxt -p 3001",
+    "dev": "nuxt -p 3003",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -21,6 +21,7 @@
     "nuxt": "^2.6.3"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.3.0",
     "@nuxtjs/eslint-config": "^0.0.1",
     "@nuxtjs/style-resources": "^0.1.2",
     "babel-eslint": "^10.0.1",
@@ -34,6 +35,7 @@
     "eslint-plugin-promise": ">=4.0.1",
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.2.2",
+    "firebase-tools": "^7.0.2",
     "node-sass": "^4.12.0",
     "nodemon": "^1.18.9",
     "nuxt-sass-resources-loader": "^2.0.5",

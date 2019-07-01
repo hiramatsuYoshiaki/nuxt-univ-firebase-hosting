@@ -16,7 +16,6 @@
       </h2>
       <h2 class="subtitle">
         NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
-        NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
       </h2>
     </div>
     <div class="content">

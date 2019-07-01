@@ -19,29 +19,19 @@
       </h2>
     </div>
     <div class="content">
-      <!-- <section>
-        <a class="github sec-link" href="https://github.com/hiramatsuYoshiaki/nuxt-univ-app1">
+      <section>
+        <a class="github sec-link" href="https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-hosting">
           <h3>GitHub Code</h3>
-          <div class="word-wrap">hiramatsuYoshiaki/nuxt-univ-app1</div>
-          <div class="word-wrap">https://github.com/hiramatsuYoshiaki/nuxt-univ-app1</div>
+          <div class="word-wrap">hiramatsuYoshiaki/nuxt-univ-firebase-hosting</div>
         </a>
-        <a class="github sec-link" href="https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/projects/1">
-          <h3>GitHub Project</h3>
-          <div class="word-wrap">https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/projects/1</div>
+      </section>
+      <section>
+        <a class="netlify sec-link" href="https://circleci.com/gh/hiramatsuYoshiaki/">
+          <h3>Circle CI</h3>
+          <div class="word-wrap">hiramatsuYoshiaki</div>
+          <div class="word-wrap">nuxt-univ-firebase-hosting</div>
         </a>
-        <a class="github sec-link" href="https://hiramatsuyoshiaki.github.io/nuxt-univ-app1/">
-          <h3>GitHub Pages</h3>
-          <div class="word-wrap">https://hiramatsuyoshiaki.github.io/nuxt-univ-app1/</div>
-        </a>
-      </section> -->
-      <!-- <section>
-        <a class="netlify sec-link" href="https://nuxt-univ-app1.netlify.com/">
-          <h3>Netlify</h3>
-          <div class="word-wrap">Yoshiaki Hiramatsu team</div>
-          <div class="word-wrap">nuxt-univ-app1</div>
-          <div class="word-wrap">https://nuxt-univ-app1.netlify.com/</div>
-        </a>
-      </section> -->
+      </section>
     </div>
     <transition name="mainCon" appear>
       <div class="content-footer">

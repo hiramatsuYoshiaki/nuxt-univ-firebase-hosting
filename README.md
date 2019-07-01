@@ -1,5 +1,6 @@
 # Nuxt-univ-Firebase-hostting 
-NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。 
+NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
+ 
  
 # nuxt-univ-app1 
 > My peachy Nuxt.js project
@@ -279,8 +280,6 @@ if (firebase.apps.length === 0) {
 export default firebase
 
 ```
-   
-    
      
       
 # GitHub 

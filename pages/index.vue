@@ -21,7 +21,7 @@
     <div class="content">
       <section>
         <a class="github sec-link" href="https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-hosting">
-          <h3>GitHub Code</h3>
+          <h3>GitHub</h3>
           <div class="word-wrap">hiramatsuYoshiaki/nuxt-univ-firebase-hosting</div>
         </a>
       </section>

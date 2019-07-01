@@ -38,7 +38,371 @@ $ npm run generate
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
-***
+*** 
+ 
+# Firebaseで新規プロジェクトを作成しディプロイする。 
+## 手動でディプロイする。
+1. Firebaseで新規プロジェクトを作成する。 
+ 
+2. Firebase CLI をインストール 
+```
+$ npm install -g firebase-tools 
+```
+ 
+3. Firebase プロジェクトにアクセスする 
+```
+$ firebase login
+```
+ 
+4. サイトを初期化する（firebasercとfirebase.jsonを作る） 
+```
+$ firebase init
+```
+  
+選択肢に答える  
+ 
+ ```
+? Are you ready to proceed?
+```
+⇒　yを押して、enterを押す 
+
+```
+ 
+? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to conf
+irm your choices. Hosting: Configure and deploy Firebase Hosting sites
+```
+ 
+下矢印キーを押してリストを選択 
+⇒　hostingを選択し、スペースキーを押して、enterを押す。(ホスティングのみ選択) 
+```
+? Select a default Firebase project for this directory:
+``` 
+ 
+下矢印キーを押してリストを選択（プロジェクト数が多い場合は下に隠れている） 
+⇒　スペースキーを押してプロジェクトを選択して。enterを押す 
+``` 
+
+? What do you want to use as your public directory? 
+```
+⇒　distを入力し、enterを押す 
+```
+ 
+? Configure as a single-page app (rewrite all urls to /index.html)? 
+```
+⇒　nを入力し、enterを押す。（シングルページアプリケーションの場合はy） 
+ 
+```
+? File dist/index.html already exists. Overwrite? 
+```
+⇒　ｎを入力し、enterを押す 
+ 
+5. アプリケーションのルートディレクトリにfirebasercとfirebase.jsonができていることを確認する。 
+ 
+6. buildもしくは、generateする 
+```
+$ npm run build もしくは、npm run generate 
+```
+ 
+7. ローカルで実行してテストしてみる 
+ 
+```
+$ firebase serve 
+```
+localhost:5000/にアクセスして確認する 　
+ 
+8. firebaseにディプロイする 
+```
+$ firebase deploy 
+```
+ 
+9. firebaseにホスティングされていることを確認する。 
+https://nuxt-app-xxxx.firebaseapp.com/にアクセスするか、firebaseのダッシュボードからアクセスして確認する。 
+  
+ 
+## Circle CI でGitHubにpushしたら自動でディプロイする。 
+https://qiita.com/nakata_kazuhiro/items/53c7f06900ae3156e07b 
+https://note.mu/yoneapp/n/n7037373c0b76
+  
+1. CircleCIへGitHubでloginする。 
+```
+$ firebase login:ci
+```
+ 
+2. CircleCIにログイン後、画面のサイドバーから「JOBS」を選択し該当リポジトリの歯車アイコンをクリックして画面遷移 
+ 
+
+3. BUILD SETTINGSの「Environment Variables」へ遷移し環境変数を登録する。 
+  
+4. デプロイ用のFirebaseトークンを取得し設定する 
+```
+ 
+$ firebase login:ci
+```
+表示されたデプロイ用のFirebaseトークンをコピーする。
+Circle CIのEnvironment Variables画面の「Add Variable」ボタンを押しポップアップ画面に入力する。
+```
+nema:  FIREBASE_TOKEN 
+value: xxxaoxnMhPCgF8SoK2ND6HDdh4G0-bKm-xxxxxxxxxxxx
+
+```
+ 
+5. firebaseプロジェクトIDを設定する
+```
+name:  FIREBASE_PROJECT_ID
+value: nuxt-app-xxxxxxxx
+```
+ 
+6. firebaseConfigを設定する　
+```
+name:  FIREBASE_API_KEY
+value: xxxxxxxxx_zE8_oNkN43OS-xhlIIAQv2uOjLTLI 
+
+ 
+name:  FIREBASE_AUTH_DOMAIN
+value: nuxt-app-xxxx.firebaseapp.com
+ 
+name:  FIREBASE_DATABASEURL
+value: https://nuxt-app-xxxx.firebaseio.com
+ 
+name:  FIREBASE_PROJECTID
+value: nuxt-app-xxxx
+ 
+name:  FIREBASE_STORAGEBUCKET
+value: nuxt-app-xxxx.appspot.com
+```
+
+7. CircleCIではnpm -gでのコマンド実行が出来ないため、グローバルインストールのみの場合は、pakage.jsonに追加するために、プロジェクトにインストールする。 　
+ 　
+```
+$ npm install --save-dev firebase-tools
+$ npm install --save-dev @nuxtjs/dotenv
+```
+ 
+
+8. CircleCIの設定ファイルを作成
+プロジェクト直下に`.circleci/config.yml`ファイルを作成します。 　
+ 　
+9. .circleci/config.ymlを編集する 
+```
+version: 2
+jobs:
+  deploy_dev: # ジョブ名
+    docker:
+      - image: circleci/node:10.15.3 # ジョブ実行環境のDockerイメージを記述
+    steps:
+      - checkout # ソースコードのチェックアウト
+      - run:
+          name: Add env # .envを作成　セキュリティためGitHubにはアップしないため
+          command: |
+            echo "FIREBASE_API_KEY=$FIREBASE_API_KEY" > .env
+            echo "FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN" >> .env
+            echo "FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL" >> .env
+            echo "FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID" >> .env
+            echo "FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET" >> .env
+          # echo "FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID" >> .env
+      - run: # 順に実行したいコマンドとコマンドに名前をつけます
+          name: npm install
+          command: npm i
+      - run:
+          name: build
+          command: npm run generate
+      - run:
+          name: deploy to Firebase Hosting
+          command: ./node_modules/.bin/firebase deploy --project=$FIREBASE_PROJECT_ID --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします
+
+workflows:
+  version: 2
+  deploy_dev: # ワークフローの名前
+    jobs:
+      - deploy_dev: # 上で定義したジョブを指定します
+          filters:
+            branches:
+              only: dev # developブランチのみを実行対象とします。今回はdevブランチ
+```
+ 
+10. developブランチをビルド可能な状態でpushするとジョブが実行されます。
+11. Circle CIのjobs画面で確認できます。 
+12. https://nuxt-app-xxxx.firebaseapp.com/にアクセスしホスティングされていることを確認します。
+ 
+  
+  # dotenv を使って環境変数を設定し、Firebaseのconfigで使う。
+1. dotenvをインストール 
+```
+$ npm i @nuxtjs/dotenv
+```
+2. nuxt.config.jsを編集する 
+`nuxt.config.js`
+```
+export default {
+  modules: [
+    '@nuxtjs/dotenv'
+  ],
+  env: {
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+    FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+    FIREBASE_DATABASEURL: process.env.FIREBASE_DATABASEURL,
+    FIREBASE_PROJECTID: process.env.FIREBASE_PROJECTID,
+    FIREBASE_STORAGEBUCKET: process.env.FIREBASE_STORAGEBUCKET,
+  },
+}
+```
+3. .envをルートディレクトリに作りキーを設定する。 
+`.env`
+```
+FIREBASE_API_KEY='<key>'
+FIREBASE_AUTH_DOMAIN='oauth3.firebaseapp.com'
+FIREBASE_DATABASEURL='https://oauth3.firebaseio.com'
+FIREBASE_PROJECTID='oauth3'
+FIREBASE_STORAGEBUCKET='oauth3.appspot.com'
+```
+4. Firebase configにprocess.envを使って設定をする。
+`plugins/firebase.js`
+```
+import firebase from 'firebase/app'
+import 'firebase/database'
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/storage'
+ 
+const config = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASEURL,
+  projectId: process.env.FIREBASE_PROJECTID,
+  storageBucket: process.env.FIREBASE_STORAGEBUCKET
+}
+ 
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(config)
+}
+ 
+export default firebase
+
+```
+   
+    
+     
+      
+# GitHub 
+## GitHub リポジトリの作成 
+1. GitHub ログイン後のトップページから、Repositories の New ボタンをクリックします。 
+2. Create a new repository の画面に遷移するので、リポジトリ名、ライセンス等を入力。Initialize this repository with a READMEはチェックせず画面下のほうにある Create repository ボタンをクリックします。 
+ 
+## プロジェクトを GitHub に Push する 
+1. git add -A 
+2. git commit -m "first commit" 
+3. git remote add origin https://github.com/hiramatsuYoshiaki/プロジェクト名 
+4. git push -u origin master 
+
+## 現在のブランチから派生ブランチを作成してGitHubへPushする。  
+1. git branch new-branch 
+2. git checkout new-branch 
+3. git branch 
+   * new-branch 
+     master 
+4. git add -A 
+5. git commit -m 'new branch commit' 
+6. git push --set-upstream origin new-branch 
+   (もしくは、　git push -u origin new-branch) 
+
+## GitHubリポジトリをcloneしてローカルプロジェクト作る 
+1. リモートリポジトリをcloneする。 
+```
+    git clone https://github.com/hiramatsuYoshiaki/vue-cli3-app.git  
+```
+2. インストールする  
+```
+    npm install  
+```
+3. サーバーを立ち上げて確認    
+```
+   npm run dev
+```
+4. ローカルサーバーへアクセス 
+```
+   http://localhost:3000/で確認する。 
+```
+
+## ローカルプロジェクトをGitHubへpushする。 
+```
+1. 現在のブランチを確認する。
+   git branch  
+   * master  
+```
+2. masterから新しいbranchを作る  
+```
+　　git branch new-branch   
+```
+3. 新しいbranchに移動し開発を行う。 
+``` 
+   git checkout new-branch  
+   ```
+4. cloneしたリポジトリから別のリモートリポジトリのURLを変更する場合  
+```
+    git remote -v
+    origin  https://github.com/hiramatsuYoshiaki/vue-cli3-unit.git (fetch)  
+    origin  https://github.com/hiramatsuYoshiaki/vue-cli3-unit.git (push)  
+    git remote rm originで現在のリモートリポジトリを削除する  
+    git remote add originで新しいリモートリポジトリを追加する   
+    git remote add origin https://github.com/hiramatsuYoshiaki/vue-cli3-unit-alprime.git
+```
+5. コミットしてGitHubにpushする  
+```
+   git add　-A  
+   git commit -m "コメント"  
+   git push -u origin new-branch  
+```  
+
+## localでいままで作業していたbranchを削除する 
+  1.これで削除できます。これはしなくてもいいですが、
+   開発が進んでいくとbranchが増えてbranch一覧がごちゃごちゃしてくるので 
+   やったほうがいいです。  
+  ```
+  git branch -d new-branch  
+  ```
+
+## 他の人の開発分を取り込む 
+1. masterに他の人が追加した分を自分のところに取り込みます。 
+```
+  git pull origin master  
+```
+## Githubへのpushでusername/passwordの入力対応（https）
+https://did2memo.net/2015/07/26/github-remember-username-https/
+https://garicchi.com/?p=19323
+#usernameの入力省略
+1. リモートリポジトリの接続を確認する
+```
+$ git remote -v
+origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (fetch)
+origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (push)
+```
+clone時にhttpsのurlでcloneしたのでhttps通信方法になっている。 
+ 
+2. リモートリポジトリを削除する。
+```
+$ git remote rm
+```
+3. リモートリポジトリのurlにユザー名入れて追加する。
+```
+$ git remote add origin https://hiramatsuYoshiaki@github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git
+```
+push時にユザー名は聞かれない。 
+ 
+#usernameの入力省略
+https://help.github.com/en/articles/caching-your-github-password-in-git
+1. パスワードを一定時間保持して、入力を省略する。
+Windows を使っているなら、wincred という補助ツールがあります。 
+Windows Credential Store）で、重要な情報を管理します。 
+```
+$ git config --global credential.helper wincred 
+```
+15分パスワードを保持
+```
+$ git config --global credential.helper wincred cache 'cache --timeout=3600'
+```
+60分パスワードを保持
+ 
+
 # nuxt.config.js setting
 > nuxt.config.jsでの導入時の設定
 # eslint

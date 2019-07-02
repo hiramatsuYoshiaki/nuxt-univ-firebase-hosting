@@ -81,20 +81,36 @@ export default {
 
       mdDatas: [
         {
-          topMenu: `１．プロジェクトを作る`,
-          topMenuMd: `１．プロジェクトを作る`,
+          topMenu: `１．プロジェクトを作るa`,
+          topMenuMd: `１．プロジェクトを作るb`,
           usages: [
             {
               subMenuId: 1,
-              subMenu: 'GitHub リモートリポジトリをcloneする',
-              title: ' GitHubリポジトリをcloneしてローカルプロジェクトを作る',
-              Description: 'プロジェクトホルダーを作成し、GitHubからローカルにデモアプリケーションをコピーします。',
+              subMenu: 'ローカルプロジェクトを作るc',
+              title: 'GitHubリポジトリをcloneしてローカルプロジェクト作る。d',
+              Description: 'hiramatsuYoshiaki/nuxt-univ-app2リポジトリをベースにして、ローカルプロジェクトを新規作成して開発を開始します。e',
               operations: [
+                {
+                  opeTitle: '新規ローカルプロジェクトのディレクトリを作成する',
+                  comands: [
+                    {
+                      cmd: '    $ md new-project'
+                    }
+                  ]
+                },
                 {
                   opeTitle: 'リモートリポジトリをcloneする。',
                   comands: [
                     {
-                      cmd: '    $ git clone https://github.com/hiramatsuYoshiaki/nuxt-univ-app1.git'
+                      cmd: '    $ git clone https://github.com/hiramatsuYoshiaki/nuxt-univ-app2.git'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' サーバーを立ち上げて確認',
+                  comands: [
+                    {
+                      cmd: '    $ npm run dev'
                     }
                   ]
                 },
@@ -107,7 +123,7 @@ export default {
                   ]
                 },
                 {
-                  opeTitle: ' サーバーを立ち上げて確認',
+                  opeTitle: 'サーバーを立ち上げて確認',
                   comands: [
                     {
                       cmd: '    $ npm run dev'
@@ -126,7 +142,7 @@ export default {
             },
             {
               subMenuId: 2,
-              subMenu: 'GitHub 新規リポジトリを作成する。',
+              subMenu: 'リモートプロジェクトを作成する。ｃ',
               title: ' GitHub リポジトリの作成',
               Description: '新規プロジェクト用のリポジトリを作り、チーム開発のバージョン管理を行います。',
               operations: [
@@ -139,7 +155,7 @@ export default {
                   ]
                 },
                 {
-                  opeTitle: 'Create a new repository の画面に遷移するので、リポジトリ名、ライセンス等を入力する。',
+                  opeTitle: 'Create a new repository の画面に遷移するので、リポジトリ名、簡単な説明を入力する。',
                   comands: [
                     {
                       cmd: `    Repository name: リポジトリ名`
@@ -171,110 +187,314 @@ export default {
                       cmd: '    git push -u origin master'
                     }
                   ]
+                },
+                {
+                  opeTitle: 'ローカルプロジェクトで現在のブランチから開発用の派生ブランチ(dev)を作成してGitHubへPushする。',
+                  comands: [
+                    {
+                      cmd: '    git branch new-branch(dev)'
+                    },
+                    {
+                      cmd: '    git checkout new-branch(dev)'
+                    },
+                    {
+                      cmd: '    git add -A '
+                    },
+                    {
+                      cmd: '    git commit -m "new branch dev commit"'
+                    },
+                    {
+                      cmd: '    git push --set-upstream origin dev'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: 'GitHubでDevブランチをmasterブランチにマージする。',
+                  comands: [
+                    {
+                      cmd: '    codeタグを選択し、branch:masterボタンを押し、開発用のブランチ（dev）を選択する。'
+                    },
+                    {
+                      cmd: '    New pull requestボタンを押す'
+                    },
+                    {
+                      cmd: '    Create pull requestボタンを押す '
+                    },
+                    {
+                      cmd: '    Confirm margeボタンを押す'
+                    },
+                    {
+                      cmd: '    Delete branchボタンを押す'
+                    }
+                  ]
                 }
               ]
             }
           ]
         },
+
         {
           topMenu: `２．ホスティングする。`,
           topMenuMd: `２．ホスティングする。`,
           usages: [
             {
               subMenuId: 1,
-              subMenu: 'Netlifyへホスティングする。',
-              title: ' Netlifyへホスティングする。',
-              Description: 'GitHubリポジトリのマージから、Netlifyの自動ディプロイで、ホスティングする。',
+              subMenu: 'Firebaseへホスティングする。',
+              title: ' Firebaseで新規プロジェクトを作成しディプロイする。',
+              Description: 'Firebaseで新規プロジェクトを作成した後に、プロジェクトをFirebaseにホスティングします。',
               operations: [
                 {
-                  opeTitle: 'Netlifyログインし、画面右上の「New site from Git」を押す。',
+                  opeTitle: 'Firebaseのコンソール画面から、新規プロジェクトの作成ボタンを押し、プロジェクト名を入力し、プロジェクト作成ボタンを押します。',
                   comands: [
                     {
-                      cmd: '    「New site from Git」を押す。'
+                      cmd: '    「プロジェクト作成」を押す。'
                     }
                   ]
                 },
                 {
-                  opeTitle: '「Github」を押し、リポジトリを選択する。',
+                  opeTitle: 'Firebase CLI をインストール',
                   comands: [
                     {
-                      cmd: '    リポジトリを選択'
+                      cmd: '    $ npm install -g firebase-tools'
                     }
                   ]
                 },
                 {
-                  opeTitle: ' Create a new site画面で各項目を入力し、「Deploy site」ボタンを押す。',
+                  opeTitle: ' Firebase プロジェクトにアクセスする',
                   comands: [
                     {
-                      cmd: '    Owner: チーム名'
-                    },
-                    {
-                      cmd: '    Branch to deploy: master'
-                    },
-                    {
-                      cmd: '    Build command: nuxt generate'
-                    },
-                    {
-                      cmd: '    Publish directory: dist'
-                    },
-                    {
-                      cmd: '    Deploy site」ボタンを押す。'
-                    },
-
-                    {
-                      cmd: '    Netlifyのサイトにアクセスして確認する'
+                      cmd: '    $ firebase login'
                     }
-
+                  ]
+                },
+                {
+                  opeTitle: ' サイトを初期化する（firebasercとfirebase.jsonを作る）',
+                  comands: [
+                    {
+                      cmd: '    $ firebase init'
+                    },
+                    {
+                      cmd: '    ? Are you ready to proceed?'
+                    },
+                    {
+                      cmd: '    ⇒　yを押して、enterを押す'
+                    },
+                    {
+                      cmd: '    ? Which Firebase CLI features do you want to set up for this folder?'
+                    },
+                    {
+                      cmd: '      Press Space to select features, '
+                    },
+                    {
+                      cmd: '      then Enter to confirm your choices. Hosting:'
+                    },
+                    {
+                      cmd: '      Configure and deploy Firebase Hosting sites'
+                    },
+                    {
+                      cmd: '    ⇒ 下矢印キーを押してリストからhostingを選択し、'
+                    },
+                    {
+                      cmd: '       スペースキーを押して、enterを押す。(ホスティングのみ選択)'
+                    },
+                    {
+                      cmd: '    ? Select a default Firebase project for this directory:'
+                    },
+                    {
+                      cmd: '    ⇒　下矢印キーを押してリストを選択,'
+                    },
+                    {
+                      cmd: '        スペースキーを押してプロジェクトを選択して。enterを押す'
+                    },
+                    {
+                      cmd: '    ? What do you want to use as your public directory?'
+                    },
+                    {
+                      cmd: '    ⇒　distを入力し、enterを押す'
+                    },
+                    {
+                      cmd: '    ? Configure as a single-page app (rewrite all urls to /index.html)?'
+                    },
+                    {
+                      cmd: '    ⇒　nを入力し、enterを押す。'
+                    },
+                    {
+                      cmd: '    ? File dist/index.html already exists. Overwrite?'
+                    },
+                    {
+                      cmd: '    ⇒　nを入力し、enterを押す。'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' アプリケーションのルートディレクトリにfirebasercとfirebase.jsonができていることを確認する。',
+                  comands: [
+                    {
+                      cmd: '    firebaserc '
+                    },
+                    {
+                      cmd: '    firebase.json'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' buildもしくは、generateする',
+                  comands: [
+                    {
+                      cmd: '    $ npm run build もしくは、npm run generate'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' ローカルで実行してテストしてみる',
+                  comands: [
+                    {
+                      cmd: '    $ firebase serve'
+                    },
+                    {
+                      cmd: '    localhost:5000/にアクセスして確認する'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' firebaseにディプロイする',
+                  comands: [
+                    {
+                      cmd: '    $ firebase deploy'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' firebaseにホスティングされていることを確認する。',
+                  comands: [
+                    {
+                      cmd: '    https://nuxt-app-xxxx.firebaseapp.com/にアクセス、'
+                    },
+                    {
+                      cmd: '    または、firebaseのダッシュボードからアクセスして確認する。'
+                    }
                   ]
                 }
-
               ]
             }
 
           ]
         },
-        { topMenu: `３．Nuxt.config設定変更`,
-          topMenuMd: `３．Nuxt.config設定変更`,
+        { topMenu: `３．自動ディプロイ`,
+          topMenuMd: `３．自動ディプロイ`,
           usages: [
             {
               subMenuId: 1,
-              subMenu: 'SASSを使う',
-              title: ' SASSを使う',
-              Description: 'SASSを利用したい場合は node-sass および sass-loader パッケージをインストールします。',
+              subMenu: 'Circle CIの設定a',
+              title: ' Circle CIで自動ビルド設定する。',
+              Description: 'GitHubのDevブランチへpushしたら、Circle CIでFirebaseへ自動でディプロイする',
               operations: [
                 {
-                  opeTitle: 'node-sass sass-loaderをインストールする。',
+                  opeTitle: 'プロジェクトで以下のコマンドを実行し、デプロイ用のFirebaseトークンを取得する。表示されたデプロイ用のFirebaseトークンはコピーしておく。',
                   comands: [
                     {
-                      cmd: `
-    $ npm install --save-dev node-sass sass-loader
-                      `
+                      cmd: `     $ firebase login:ci                     `
                     }
                   ]
                 },
                 {
-                  opeTitle: 'nuxt.configに設定を追記する。',
+                  opeTitle: 'CircleCIにログイン後、画面のサイドバーから「SETTINGS」を選択し、「projects」クリックしてGitHubリポジトリのリストを表示する。',
                   comands: [
                     {
-                      cmd: `
-    export default {
-        css: [
-            // プロジェクト内の SCSS ファイル
-            '@/assets/sass/styles.scss'
-        ]
-    }
-                      `
+                      cmd: `     settingをクリックし、次にprojectをクリック                     `
                     }
                   ]
                 },
                 {
-                  opeTitle: ' component styleタグを変更する',
+                  opeTitle: ' 該当するリポジトリの右端にある、歯車アイコンをクリックする。',
                   comands: [
                     {
-                      cmd: '    <style scoped lang="scss">'
+                      cmd: '    歯車アイコンをクリック'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' BUILD SETTINGSの「Environment Variables」をクリックし、画面遷移する。',
+                  comands: [
+                    {
+                      cmd: '    「Environment Variables」をクリック'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseトークンを設定する',
+                  comands: [
+                    {
+                      cmd: '    nema:  FIREBASE_TOKEN'
                     },
                     {
-                      cmd: '    </style>'
+                      cmd: '    value: xxxaoxnMhPCgF8SoK2ND6HDdh4G0-bKm-xxxxxxxxxxxx'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseプロジェクトIDを設定する',
+                  comands: [
+                    {
+                      cmd: '    name:  FIREBASE_PROJECT_ID'
+                    },
+                    {
+                      cmd: '    value: nuxt-app-xxxxxxxx'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseConfigを設定する',
+                  comands: [
+                    {
+                      cmd: '    name:  FIREBASE_API_KEY'
+                    },
+                    {
+                      cmd: '    value: xxxxxxxxx_zE8_oNkN43OS-xhlIIAQv2uOjLTLI'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseホスティングドメインを設定する',
+                  comands: [
+                    {
+                      cmd: '    name:  FIREBASE_AUTH_DOMAIN'
+                    },
+                    {
+                      cmd: '    value: nuxt-app-xxxx.firebaseapp.com'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseデータベースURLを設定する',
+                  comands: [
+                    {
+                      cmd: '    name:  FIREBASE_DATABASEURL'
+                    },
+                    {
+                      cmd: '    value: https://nuxt-app-xxxx.firebaseio.com'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseプリジェクトIDを設定する',
+                  comands: [
+                    {
+                      cmd: '    name:  FIREBASE_PROJECTID'
+                    },
+                    {
+                      cmd: '    value: nuxt-app-xxxx'
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' 「Add Variable」ボタンを押し,ポップアップ画面でfirebaseストレージバケットを設定する',
+                  comands: [
+                    {
+                      cmd: '    name:  FIREBASE_STORAGEBUCKET'
+                    },
+                    {
+                      cmd: '    value: nuxt-app-xxxx.appspot.com'
                     }
                   ]
                 }
@@ -282,49 +502,77 @@ export default {
             },
             {
               subMenuId: 2,
-              subMenu: 'SASS変数を使う',
-              title: ' SASS変数を使う',
-              Description: 'SASS変数をimportなしで利用したい場合は @nuxtjs/style-resources パッケージをインストールします。',
+              subMenu: '環境変数を設定b',
+              title: ' dotenvを使う',
+              Description: 'dotenv を使って.envファイルに設定した環境変数をFirebaseのconfigで使う',
               operations: [
                 {
-                  opeTitle: '@nuxtjs/style-resourcesrをインストールする。',
+                  opeTitle: 'dotenvをインストールをインストールする。',
                   comands: [
                     {
-                      cmd: `
-    $ npm install --save-dev @nuxtjs/style-resources
-                      `
+                      cmd: `    $ npm i @nuxtjs/dotenv             `
                     }
                   ]
                 },
                 {
-                  opeTitle: 'nuxt.configに設定を追記する。',
+                  opeTitle: 'nuxt.config.jsを編集する',
                   comands: [
                     {
                       cmd: `
-    modules: [
-      '@nuxtjs/style-resources',
-    ],
-
-    styleResources: {
-      sass: [
-        '~/assets/sass/variable.scss',
+      export default {
+        modules: [
+          '@nuxtjs/dotenv'
         ],
-    },
+        env: {
+          FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+          FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+          FIREBASE_DATABASEURL: process.env.FIREBASE_DATABASEURL,
+          FIREBASE_PROJECTID: process.env.FIREBASE_PROJECTID,
+          FIREBASE_STORAGEBUCKET: process.env.FIREBASE_STORAGEBUCKET,
+        },
+      }
                       `
                     }
                   ]
                 },
                 {
-                  opeTitle: ' sass変数をimportなしで使えます。例',
+                  opeTitle: ' .envをルートディレクトリに作りキーを設定する。',
                   comands: [
                     {
                       cmd: `
-    <style scoped lang="scss">
-        //@import "../../../assets/scss/common/data/thema.scss";
-        .container {
-            color: $text-color
-        }
-    </style>
+    FIREBASE_API_KEY='<key>'
+    FIREBASE_AUTH_DOMAIN='oauth3.firebaseapp.com'
+    FIREBASE_DATABASEURL='https://oauth3.firebaseio.com'
+    FIREBASE_PROJECTID='oauth3'
+    FIREBASE_STORAGEBUCKET='oauth3.appspot.com'
+                      `
+                    }
+                  ]
+                },
+                {
+                  opeTitle: ' Firebase configにprocess.envを使って設定をする。',
+                  comands: [
+                    {
+                      cmd: `
+    import firebase from 'firebase/app'
+    import 'firebase/database'
+    import 'firebase/firestore'
+    import 'firebase/auth'
+    import 'firebase/storage'
+    
+    const config = {
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.FIREBASE_DATABASEURL,
+      projectId: process.env.FIREBASE_PROJECTID,
+      storageBucket: process.env.FIREBASE_STORAGEBUCKET
+    }
+    
+    if (firebase.apps.length === 0) {
+      firebase.initializeApp(config)
+    }
+    
+    export default firebase
                       `
                     }
                   ]
@@ -334,352 +582,78 @@ export default {
             // eslintのフォーマットエラーの解消
             {
               subMenuId: 3,
-              subMenu: 'eslintフォーマットエラー',
-              title: ' eslintフォーマットエラー',
-              Description: 'アプリを起動するたびにeslintのエラーが発生し、「--fixオプションで修正可能な可能性があります」と表示されるエラー対応。',
+              subMenu: 'Dockerイメージ',
+              title: ' Dockerイメージ',
+              Description: 'Dockerイメージをconfig.ymlに作りCircleCIに自動ディプロイさせる',
               operations: [
                 {
-                  opeTitle: ' eslintrc.jsに設定追記する。',
+                  opeTitle: ' CircleCIではnpm -gでのコマンド実行が出来ないため、グローバルインストールのみの場合は、pakage.jsonに追加するために、プロジェクトにインストールする。',
                   comands: [
                     {
-                      cmd: `
-    extend(config, ctx) {
-        if (ctx.dev && ctx.isClient) {
-            config.module.rules.push({
-                enforce : 'pre',
-                test    : /.(js|vue)$/,
-                loader  : 'eslint-loader',
-                exclude : /(node_modules)/,
-                options : {
-                    fix : true
-                }
-            });
-        }
-    } 
-                      `
-                    }
-                  ]
-                }
-              ]
-            },
-            // Google Serch Colsole
-            {
-              subMenuId: 4,
-              subMenu: 'Google Serch Colsole',
-              title: ' Google Serch Colsoleを使う',
-              Description: 'Google Serch Colsoleの設定を行う。',
-              operations: [
-                {
-                  opeTitle: 'Google Serch Colsoleからメタタグを取得',
-                  comands: [
+                      cmd: `    $ npm install --save-dev firebase-tools                  `
+                    },
                     {
-                      cmd: `
-    TaWpD9i4R5GSPzJjnTc8--t-g8bbDKbfxQX-e1kgio0 
-                      `
+                      cmd: `    $ npm install --save-dev @nuxtjs/dotenv                  `
                     }
                   ]
                 },
                 {
-                  opeTitle: 'nuxt.config に設定をする。',
+                  opeTitle: ' CircleCIの設定ファイルを作成。プロジェクト直下に`.circleci/config.yml`ファイルを作成ます。(ファイル名の先頭に.を付ける点に注意)',
                   comands: [
                     {
-                      cmd: `
-    head: {
-   
-        meta: [
-        { name: "google-site-verification",
-            content: "TaWpD9i4R5GSPzJjnTc8--t-g8bbDKbfxQX-e1kgio0" },
-        ],
-    },
-                      `
-                    }
-                  ]
-                }
-
-              ]
-            },
-            // Google Analytics
-            {
-              subMenuId: 5,
-              subMenu: 'Google Analytics',
-              title: ' Google Analyticsを使う',
-              Description: 'Google Analyticsを使うための設定を行う。',
-              operations: [
-                {
-                  opeTitle: '@nuxtjs/google-analyticsをインストールする。',
-                  comands: [
-                    {
-                      cmd: `
-    $ npm install --save @nuxtjs/google-analytics 
-                      `
+                      cmd: `    .circleci/config.yml                  `
                     }
                   ]
                 },
                 {
-                  opeTitle: 'nuxt.configにアナリティクスのトラッキング IDを設定する。',
+                  opeTitle: ' .circleci/config.ymlを編集する',
                   comands: [
                     {
                       cmd: `
-    modules: [
-        ['@nuxtjs/google-analytics', { id: 'UA-xxxxx-x' }],
-    ],
+    version: 2
+    jobs:
+      deploy_dev: # ジョブ名
+        docker:
+          - image: circleci/node:10.15.3 # ジョブ実行環境のDockerイメージを記述
+        steps:
+          - checkout # ソースコードのチェックアウト
+          - run:
+              name: Add env # .envを作成セキュリティためGitHubにはアップしないため
+              command: |
+                echo "FIREBASE_API_KEY=$FIREBASE_API_KEY" > .env
+                echo "FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN" >> .env
+                echo "FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL" >> .env
+                echo "FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID" >> .env
+                echo "FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET" >> .env
+              # echo "FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID" >> .env
+          - run: # 順に実行したいコマンドとコマンドに名前をつけます
+              name: npm install
+              command: npm i
+          - run:
+              name: build
+              command: npm run generate
+          - run:
+              name: deploy to Firebase Hosting
+              command: ./node_modules/.bin/firebase deploy --project=$FIREBASE_PROJECT_ID --token=$FIREBASE_TOKEN 
+              # プロジェクト上のfirebase-toolsでデプロイします
+
+    workflows:
+      version: 2
+      deploy_dev: # ワークフローの名前
+        jobs:
+          - deploy_dev: # 上で定義したジョブを指定します
+              filters:
+                branches:
+                  only: dev # developブランチのみを実行対象とします。今回はdevブランチ                      
                       `
                     }
                   ]
                 }
-
-              ]
-            },
-            // サイトマップ自動生成
-            {
-              subMenuId: 6,
-              subMenu: 'サイトマップ自動生成',
-              title: ' サイトマップ自動生成',
-              Description: 'Nuxt.jsで静的ファイル生成時(npm run generate)にサイトマップも自動生成する。。',
-              operations: [
-                {
-                  opeTitle: '@nuxtjs/sitemapをインストールする。',
-                  comands: [
-                    {
-                      cmd: `
-    $ npm install --save @nuxtjs/sitemap 
-                      `
-                    }
-                  ]
-                },
-                {
-                  opeTitle: 'nuxt.configに設定を追記する。',
-                  comands: [
-                    {
-                      cmd: `
-    modules: [
-        '@nuxtjs/sitemap',
-    ],
-    sitemap: {
-        // path: '/sitemaps.xml',//Default: sitemaps.xml
-        hostname: 'https://romantic-kare-6d357c.netlify.com/',
-        generate: true,
-        // exclude: [
-        //   '/admin'
-        // ],
-        routes:[
-        "/",
-        {
-            url: '/works',
-            changefreq: 'daily',
-            priority: 1,
-            lastmodISO: '2017-06-30T13:30:00.000Z'
-        },
-        "/about",
-        "/contact"
-        ]
-    },
-                      `
-                    }
-                  ]
-                }
-
-              ]
-            },
-
-            // eslintrc.js console.log使用
-            {
-              subMenuId: 7,
-              subMenu: 'eslintrc.js',
-              title: ' eslintrc.js',
-              Description: 'consol.logをしようするための、eslintrc.jsの設定をする。',
-              operations: [
-                {
-                  opeTitle: 'eslintrc.js.jsに設定する。',
-                  comands: [
-                    {
-                      cmd: `
-    module.exports = {
-    rules: {
-            'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-            'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-        }
-    } 
-                      `
-                    }
-                  ]
-                }
-
               ]
             }
 
           ]
-        },
-        {
-          topMenu: `４．開発作業`,
-          topMenuMd: `４．開発作業`,
-          usages: [
-            {
-              subMenuId: 1,
-              subMenu: 'assets ディレクトリ',
-              title: ' assets ディレクトリ',
-              Description: 'assets ディレクトリには Stylus や SASS、 Image、 Font のようなコンパイルされていないファイルを入れます。',
-              operations: [
-                {
-                  opeTitle: 'SASSディレクトリーの stylies.scssでパーシャルファイルを読み込みます。dataディレクトリーには、SASS変数があります。',
-                  comands: [
-                    {
-                      cmd: '    stylies.scss'
-                    },
-                    {
-                      cmd: '    variable.scss'
-                    },
-                    {
-                      cmd: '    commn/'
-                    },
-                    {
-                      cmd: '    --| _normalize.scss '
-                    },
-                    {
-                      cmd: '    --| _gloval.scss など'
-                    },
-                    {
-                      cmd: '    --| data/'
-                    },
-                    {
-                      cmd: '    -----| _thema.scss '
-                    },
-                    {
-                      cmd: '    component/'
-                    },
-                    {
-                      cmd: '    --| navbar.scss など'
-                    }
-                  ]
-                },
-                {
-                  opeTitle: 'imgディレクトリーのlogoにロゴSVGがあります。',
-                  comands: [
-                    {
-                      cmd: '    image.jpg など'
-                    },
-                    {
-                      cmd: '    logo/'
-                    },
-                    {
-                      cmd: '    --| h-logo.svg など'
-                    }
-                  ]
-                }
-
-              ]
-            },
-            {
-              subMenuId: 2,
-              subMenu: 'components ディレクトリ',
-              title: ' components ディレクトリ',
-              Description: 'components ディレクトリには Vue.js のコンポーネントファイルを入れます。これらのコンポーネントでは asyncData や fetch を使うことはできません。',
-              operations: [
-                {
-                  opeTitle: 'components ディレクトリ構成',
-                  comands: [
-                    {
-                      cmd: `    content`
-                    },
-                    {
-                      cmd: '    works/'
-                    },
-                    {
-                      cmd: '    --| ConWorks.vue'
-                    },
-                    {
-                      cmd: '    about/'
-                    },
-                    {
-                      cmd: '    --| ConAbout.vue'
-                    },
-                    {
-                      cmd: '    contact/'
-                    },
-                    {
-                      cmd: '    --| ConContact.vue'
-                    },
-                    {
-                      cmd: `    header`
-                    },
-                    {
-                      cmd: '    --| header.vue '
-                    },
-                    {
-                      cmd: `    transition`
-                    },
-                    {
-                      cmd: '    --| transition.svg '
-                    },
-                    {
-                      cmd: `    logo.vue`
-                    }
-                  ]
-                }
-
-              ]
-            },
-            {
-              subMenuId: 3,
-              subMenu: 'layouts ディレクトリ',
-              title: ' layouts ディレクトリ',
-              Description: 'layouts ディレクトリはアプリケーションのレイアウトを含みます。レイアウトはページの外観を変更するために使用されます',
-              operations: [
-                {
-                  opeTitle: 'layouts/topPage.vue',
-                  comands: [
-                    {
-                      cmd: `[layouts/topPage.vueの内容は、Github issue をみてください。](https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/issues/33)`
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              subMenuId: 4,
-              subMenu: 'page ディレクトリ',
-              title: ' page ディレクトリ',
-              Description: 'pages ディレクトリにはアプリケーションのビュー及びルーティングファイルを入れます。Nuxt.js フレームワークはこのディレクトリ内のすべての *.vue ファイルを読み込み、アプリケーションのルーターを作成します。',
-              operations: [
-                {
-                  opeTitle: '個別のページへのHTMLのheadタグを設定する',
-                  comands: [
-                    {
-                      cmd: `[landingページの head メソッドの内容は、Github issue をみてください。](https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/issues/43)`
-                    },
-                    {
-                      cmd: `[worksページの head メソッドの内容は、Github issue をみてください。](https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/issues/41)`
-                    },
-                    {
-                      cmd: `[aboutページの head メソッドの内容は、Github issue をみてください。](https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/issues/40)`
-                    },
-                    {
-                      cmd: `[contactページの head メソッドの内容は、Github issue をみてください。](https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/issues/42)`
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              subMenuId: 5,
-              subMenu: 'store ディレクトリ',
-              title: ' store ディレクトリ',
-              Description: 'store ディレクトリには Vuex ストア のファイルを入れます。Vuex ストアは Nuxt.js に付属していますが、デフォルトでは無効になっています。このディレクトリに index.js　ファイルを作成するとストアが有効になります。',
-              operations: [
-                {
-                  opeTitle: 'store/index.js',
-                  comands: [
-                    {
-                      cmd: `[store/index.js の詳細設定は、Github issue をみてください。](https://github.com/hiramatsuYoshiaki/nuxt-univ-app1/issues/34)`
-                    }
-                  ]
-                }
-
-              ]
-            }
-          ]
         }
-
       ]
     }
   },

@@ -3,7 +3,7 @@ NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする
  
 
 #GitHub 
-## GitHubリポジトリをcloneしてローカルプロジェクト作る 
+## GitHubリポジトリをcloneしてローカルプロジェクト作る。 
 1. 新規ローカルプロジェクトのディレクトリを作成する
 2. リモートリポジトリをcloneする。 
 ```
@@ -39,7 +39,7 @@ NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする
 2. git commit -m "first commit" 
 4. git push -u origin master 
 
-## 現在のブランチから開発用の派生ブランチ(dev)を作成してGitHubへPushする。  
+## ローカルプロジェクトで現在のブランチから開発用の派生ブランチ(dev)を作成してGitHubへPushする。  
 1. git branch new-branch(dev) 
 2. git checkout new-branch(dev)
 3. git branch 
@@ -55,7 +55,7 @@ NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする
 2. New pull requestボタンを押す
 3. Create pull requestボタンを押す
 4. Confirm margeボタンを押す
-5. Delete margeボタンを押す
+5. Delete branchボタンを押す
 
 
 # Firebaseで新規プロジェクトを作成しディプロイする。 
@@ -137,112 +137,58 @@ $ firebase deploy
 https://nuxt-app-xxxx.firebaseapp.com/にアクセスするか、firebaseのダッシュボードからアクセスして確認する。 
   
  
-## Circle CI でGitHubにpushしたら自動でディプロイする。 
+## Circle CI で自動でディプロイ設定をする。 
 https://qiita.com/nakata_kazuhiro/items/53c7f06900ae3156e07b 
 https://note.mu/yoneapp/n/n7037373c0b76
   
-1. CircleCIへGitHubでloginする。 
+1. プロジェクトで以下のコマンドを実行し、デプロイ用のFirebaseトークンを取得する。表示されたデプロイ用のFirebaseトークンはコピーしておく。 
 ```
+ 
 $ firebase login:ci
 ```
+2. CircleCIにログイン後、画面のサイドバーから「SETTINGS」を選択し、「projects」クリックしてGitHubリポジトリのリストを表示する。 
+3. 該当するリポジトリの右端にある、歯車アイコンをクリックする。
  
-2. CircleCIにログイン後、画面のサイドバーから「JOBS」を選択し該当リポジトリの歯車アイコンをクリックして画面遷移 
- 
-
-3. BUILD SETTINGSの「Environment Variables」へ遷移し環境変数を登録する。 
+4. BUILD SETTINGSの「Environment Variables」をクリックし、画面遷移する。 
   
-4. デプロイ用のFirebaseトークンを取得し設定する 
-```
- 
-$ firebase login:ci
-```
-表示されたデプロイ用のFirebaseトークンをコピーする。
-Circle CIのEnvironment Variables画面の「Add Variable」ボタンを押しポップアップ画面に入力する。
+
+5. 「Add Variable」ボタンを押し,順次以下の設定をポップアップ画面に入力する。 
+
+firebaseトークンを設定する
 ```
 nema:  FIREBASE_TOKEN 
 value: xxxaoxnMhPCgF8SoK2ND6HDdh4G0-bKm-xxxxxxxxxxxx
 
 ```
  
-5. firebaseプロジェクトIDを設定する
+firebaseプロジェクトIDを設定する
 ```
 name:  FIREBASE_PROJECT_ID
 value: nuxt-app-xxxxxxxx
 ```
  
-6. firebaseConfigを設定する　
+firebaseConfigを設定する　
 ```
 name:  FIREBASE_API_KEY
 value: xxxxxxxxx_zE8_oNkN43OS-xhlIIAQv2uOjLTLI 
-
  
+firebase ホスティングドメイン
 name:  FIREBASE_AUTH_DOMAIN
 value: nuxt-app-xxxx.firebaseapp.com
  
+firebase データベースURL
 name:  FIREBASE_DATABASEURL
 value: https://nuxt-app-xxxx.firebaseio.com
  
+ firebase プリジェクトID
 name:  FIREBASE_PROJECTID
 value: nuxt-app-xxxx
  
+ firebase ストレージバケット
 name:  FIREBASE_STORAGEBUCKET
 value: nuxt-app-xxxx.appspot.com
 ```
-
-7. CircleCIではnpm -gでのコマンド実行が出来ないため、グローバルインストールのみの場合は、pakage.jsonに追加するために、プロジェクトにインストールする。 　
- 　
-```
-$ npm install --save-dev firebase-tools
-$ npm install --save-dev @nuxtjs/dotenv
-```
  
-
-8. CircleCIの設定ファイルを作成
-プロジェクト直下に`.circleci/config.yml`ファイルを作成します。(ファイル名の先頭に.を付ける点に注意) 　
- 　
-9. .circleci/config.ymlを編集する 
-```
-version: 2
-jobs:
-  deploy_dev: # ジョブ名
-    docker:
-      - image: circleci/node:10.15.3 # ジョブ実行環境のDockerイメージを記述
-    steps:
-      - checkout # ソースコードのチェックアウト
-      - run:
-          name: Add env # .envを作成　セキュリティためGitHubにはアップしないため
-          command: |
-            echo "FIREBASE_API_KEY=$FIREBASE_API_KEY" > .env
-            echo "FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN" >> .env
-            echo "FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL" >> .env
-            echo "FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID" >> .env
-            echo "FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET" >> .env
-          # echo "FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID" >> .env
-      - run: # 順に実行したいコマンドとコマンドに名前をつけます
-          name: npm install
-          command: npm i
-      - run:
-          name: build
-          command: npm run generate
-      - run:
-          name: deploy to Firebase Hosting
-          command: ./node_modules/.bin/firebase deploy --project=$FIREBASE_PROJECT_ID --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします
-
-workflows:
-  version: 2
-  deploy_dev: # ワークフローの名前
-    jobs:
-      - deploy_dev: # 上で定義したジョブを指定します
-          filters:
-            branches:
-              only: dev # developブランチのみを実行対象とします。今回はdevブランチ
-```
- 
-10. developブランチをビルド可能な状態でpushするとジョブが実行されます。
-11. Circle CIのjobs画面で確認できます。 
-12. https://nuxt-app-xxxx.firebaseapp.com/にアクセスしホスティングされていることを確認します。
- 
-  
 # dotenv を使って環境変数を設定し、Firebaseのconfigで使う。
 1. dotenvをインストール 
 ```
@@ -297,6 +243,65 @@ if (firebase.apps.length === 0) {
 export default firebase
 
 ```
+ 　
+
+## config.ymlに自動でディプロイ設定をする。
+
+1. CircleCIではnpm -gでのコマンド実行が出来ないため、グローバルインストールのみの場合は、pakage.jsonに追加するために、プロジェクトにインストールする。 　
+ 　
+```
+$ npm install --save-dev firebase-tools
+$ npm install --save-dev @nuxtjs/dotenv
+```
+ 
+
+2. CircleCIの設定ファイルを作成
+プロジェクト直下に`.circleci/config.yml`ファイルを作成します。(ファイル名の先頭に.を付ける点に注意) 　
+ 　
+3. .circleci/config.ymlを編集する 
+```
+version: 2
+jobs:
+  deploy_dev: # ジョブ名
+    docker:
+      - image: circleci/node:10.15.3 # ジョブ実行環境のDockerイメージを記述
+    steps:
+      - checkout # ソースコードのチェックアウト
+      - run:
+          name: Add env # .envを作成　セキュリティためGitHubにはアップしないため
+          command: |
+            echo "FIREBASE_API_KEY=$FIREBASE_API_KEY" > .env
+            echo "FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN" >> .env
+            echo "FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL" >> .env
+            echo "FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID" >> .env
+            echo "FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET" >> .env
+          # echo "FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID" >> .env
+      - run: # 順に実行したいコマンドとコマンドに名前をつけます
+          name: npm install
+          command: npm i
+      - run:
+          name: build
+          command: npm run generate
+      - run:
+          name: deploy to Firebase Hosting
+          command: ./node_modules/.bin/firebase deploy --project=$FIREBASE_PROJECT_ID --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします
+
+workflows:
+  version: 2
+  deploy_dev: # ワークフローの名前
+    jobs:
+      - deploy_dev: # 上で定義したジョブを指定します
+          filters:
+            branches:
+              only: dev # developブランチのみを実行対象とします。今回はdevブランチ
+```
+ 
+4. developブランチをビルド可能な状態でpushするとジョブが実行されます。
+5. Circle CIのjobs画面で確認できます。 
+6. https://nuxt-app-xxxx.firebaseapp.com/にアクセスしホスティングされていることを確認します。
+ 
+  
+
  
 # nuxt-univ-app1 
 > My peachy Nuxt.js project

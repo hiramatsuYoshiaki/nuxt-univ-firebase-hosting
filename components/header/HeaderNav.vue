@@ -5,13 +5,13 @@
         <div class="menu_items menu_items_column">
           <div class="menu-item-box">
             <div class="menu_link" :class="{ menu_item_visible: page === '/works' }" @click="link_commit('/works')">
-              WORKS
+              DEPLOY
             </div>
             <div class="menu_underline" />
           </div>
           <div class="menu-item-box">
             <div class="menu_link" :class="{ menu_item_visible: page === '/about' }" @click="link_commit('/about')">
-              ABOUT
+              SETTING
             </div>
             <div class="menu_underline" />
           </div>
@@ -38,13 +38,13 @@
           <div class="menu_items menu_items_row">
             <div class="menu-item-box">
               <a class="menu_link" :class="{ menu_item_visible: page === '/works' }" @click="link_commit('/works')">
-                WORKS
+                deploy
               </a>
               <div class="menu_underline" />
             </div>
             <div class="menu-item-box">
               <a class="menu_link" :class="{ menu_item_visible: page === '/about' }" @click="link_commit('/about')">
-                ABOUT
+                SETTING
               </a>
               <div class="menu_underline" />
             </div>

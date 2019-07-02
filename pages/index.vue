@@ -3,7 +3,7 @@
     <div class="content-header">
       <logo />
       <h1 class="title">
-        h-works
+        h-works New
       </h1>
       <h2 class="subtitle">
         Nuxt.js Universal SSR
@@ -17,7 +17,6 @@
       <p class="subtitle">
         NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイ
       </p>
-
     </div>
 
     <transition name="mainCon" appear>

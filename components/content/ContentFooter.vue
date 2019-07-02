@@ -18,7 +18,7 @@
             :class="{ menu_item_visible: page === '/works' }"
             @click="link_commit('/works')"
           >
-            Works
+            DEPLOY
           </a>
           <div class="menu_underline" />
         </div>
@@ -29,7 +29,7 @@
             :class="{ menu_item_visible: page === '/about' }"
             @click="link_commit('/about')"
           >
-            ABOUT
+            SETTING
           </a>
           <div class="menu_underline" />
         </div>

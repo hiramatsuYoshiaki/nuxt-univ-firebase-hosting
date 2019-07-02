@@ -1,6 +1,6 @@
 # Nuxt-univ-Firebase-hostting 
 NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
-
+ 
 
 #GitHub 
 ## GitHubリポジトリをcloneしてローカルプロジェクト作る 
@@ -51,65 +51,13 @@ NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする
    (もしくは、　git push -u origin dev) 
 
 ## GitHubでDevブランチをmasterブランチにマージする
-1. codeタグを選択し、ブランチをDevに変更（選択）し、new pull requestボタンをおす。
-2. create pull requestボタンを押す
-3. 
-4. 
+1. codeタグを選択し、branch:masterボタンを押し、開発用のブランチ（dev）を選択する。
+2. New pull requestボタンを押す
+3. Create pull requestボタンを押す
+4. Confirm margeボタンを押す
+5. Delete margeボタンを押す
 
 
-
-## localでいままで作業していたbranchを削除する 
-1. これで削除できます。これはしなくてもいいですが、
-   開発が進んでいくとbranchが増えてbranch一覧がごちゃごちゃしてくるので 
-   やったほうがいいです。  
-  ```
-  git branch -d new-branch  
-  ```
-
-## 他の人の開発分を取り込む 
-1. masterに他の人が追加した分を自分のところに取り込みます。 
-```
-  git pull origin master  
-```
-## Githubへのpushでusername/passwordの入力対応（https）
-https://did2memo.net/2015/07/26/github-remember-username-https/
-https://garicchi.com/?p=19323
-#usernameの入力省略
-1. リモートリポジトリの接続を確認する
-```
-$ git remote -v
-origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (fetch)
-origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (push)
-```
-clone時にhttpsのurlでcloneしたのでhttps通信方法になっている。 
- 
-2. リモートリポジトリを削除する。
-```
-$ git remote rm
-```
-3. リモートリポジトリのurlにユザー名入れて追加する。
-```
-$ git remote add origin https://hiramatsuYoshiaki@github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git
-```
-push時にユザー名は聞かれない。 
- 
-#usernameの入力省略
-https://help.github.com/en/articles/caching-your-github-password-in-git
-1. パスワードを一定時間保持して、入力を省略する。
-Windows を使っているなら、wincred という補助ツールがあります。 
-Windows Credential Store）で、重要な情報を管理します。 
-```
-$ git config --global credential.helper wincred 
-```
-15分パスワードを保持
-```
-$ git config --global credential.helper wincred cache 'cache --timeout=3600'
-```
-60分パスワードを保持
- 
-
-
- 
 # Firebaseで新規プロジェクトを作成しディプロイする。 
 ## 手動でディプロイする。
 1. Firebaseで新規プロジェクトを作成する。 
@@ -250,7 +198,7 @@ $ npm install --save-dev @nuxtjs/dotenv
  
 
 8. CircleCIの設定ファイルを作成
-プロジェクト直下に`.circleci/config.yml`ファイルを作成します。 　
+プロジェクト直下に`.circleci/config.yml`ファイルを作成します。(ファイル名の先頭に.を付ける点に注意) 　
  　
 9. .circleci/config.ymlを編集する 
 ```
@@ -295,7 +243,7 @@ workflows:
 12. https://nuxt-app-xxxx.firebaseapp.com/にアクセスしホスティングされていることを確認します。
  
   
-  # dotenv を使って環境変数を設定し、Firebaseのconfigで使う。
+# dotenv を使って環境変数を設定し、Firebaseのconfigで使う。
 1. dotenvをインストール 
 ```
 $ npm i @nuxtjs/dotenv
@@ -349,8 +297,6 @@ if (firebase.apps.length === 0) {
 export default firebase
 
 ```
-     
-
  
 # nuxt-univ-app1 
 > My peachy Nuxt.js project
@@ -440,10 +386,10 @@ export default {
 }
 ```
 3. component style setting 
-~~~
+```
     <style scoped lang="scss">
     </style>
-~~~
+```
  
 # SASS変数をvueファイルで使う 
 importの記述なしで使う。
@@ -893,3 +839,43 @@ export const mutations = {
 ```
   build comand : nuxt generate
 ```
+## 他の人の開発分を取り込む 
+1. masterに他の人が追加した分を自分のところに取り込みます。 
+```
+  git pull origin master  
+```
+## Githubへのpushでusername/passwordの入力対応（https）
+https://did2memo.net/2015/07/26/github-remember-username-https/
+https://garicchi.com/?p=19323
+#usernameの入力省略
+1. リモートリポジトリの接続を確認する
+```
+$ git remote -v
+origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (fetch)
+origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (push)
+```
+clone時にhttpsのurlでcloneしたのでhttps通信方法になっている。 
+ 
+2. リモートリポジトリを削除する。
+```
+$ git remote rm
+```
+3. リモートリポジトリのurlにユザー名入れて追加する。
+```
+$ git remote add origin https://hiramatsuYoshiaki@github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git
+```
+push時にユザー名は聞かれない。 
+ 
+#usernameの入力省略
+https://help.github.com/en/articles/caching-your-github-password-in-git
+1. パスワードを一定時間保持して、入力を省略する。
+Windows を使っているなら、wincred という補助ツールがあります。 
+Windows Credential Store）で、重要な情報を管理します。 
+```
+$ git config --global credential.helper wincred 
+```
+15分パスワードを保持
+```
+$ git config --global credential.helper wincred cache 'cache --timeout=3600'
+```
+60分パスワードを保持

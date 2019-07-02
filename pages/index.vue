@@ -3,7 +3,7 @@
     <div class="content-header">
       <logo />
       <h1 class="title">
-        h-works
+        h-works New
       </h1>
       <h2 class="subtitle">
         Nuxt.js Universal SSR

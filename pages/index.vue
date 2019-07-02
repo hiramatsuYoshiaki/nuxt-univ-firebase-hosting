@@ -17,7 +17,6 @@
       <p class="subtitle">
         NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイ
       </p>
-
     </div>
 
     <transition name="mainCon" appear>

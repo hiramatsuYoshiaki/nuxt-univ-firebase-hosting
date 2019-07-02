@@ -1,6 +1,6 @@
 # Nuxt-univ-Firebase-hostting 
 NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
- 
+ xxxx
 
 #GitHub 
 ## GitHubリポジトリをcloneしてローカルプロジェクト作る。 

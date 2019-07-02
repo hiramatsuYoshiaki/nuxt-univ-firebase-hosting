@@ -1,45 +1,114 @@
 # Nuxt-univ-Firebase-hostting 
 NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
+
+
+#GitHub 
+## GitHubリポジトリをcloneしてローカルプロジェクト作る 
+1. 新規ローカルプロジェクトのディレクトリを作成する
+2. リモートリポジトリをcloneする。 
+```
+    git clone https://github.com/hiramatsuYoshiaki/nuxt-univ-app2.git  
+```
+3. インストールする  
+```
+    npm install  
+```
+4. サーバーを立ち上げて確認    
+```
+   npm run dev
+```
+5. ローカルサーバーへアクセス 
+```
+   http://localhost:3000/で確認する。 
+```
  
+## GitHub 新規リモートリポジトリの作成 
+1. GitHub ログイン後のトップページから、Repositories の New ボタンをクリックします。 
+2. Create a new repository の画面に遷移するので、リポジトリ名、ライセンス等を入力。Initialize this repository with a READMEはチェックせず画面下のほうにある Create repository ボタンをクリックします。
+
+## cloneしたリモートリポジトリから新規リモートリポジトリへURLを変更する
+1. git remote -v
+2. origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-app2.git (fetch)  
+3. origin  hhttps://github.com/hiramatsuYoshiaki/nuxt-univ-app2.git (push)  
+4. git remote rm originで現在のリモートリポジトリを削除する  
+5. git remote add originで新しいリモートリポジトリを追加する   
+6. git remote add origin https://github.com/hiramatsuYoshiaki/プロジェクト名vue-cli3-unit-alprime.git
  
-# nuxt-univ-app1 
-> My peachy Nuxt.js project
-## reate-nuxt-app
+## ローカルプロジェクトを GitHub に Push する 
+1. git add -A 
+2. git commit -m "first commit" 
+4. git push -u origin master 
+
+## 現在のブランチから開発用の派生ブランチ(dev)を作成してGitHubへPushする。  
+1. git branch new-branch(dev) 
+2. git checkout new-branch(dev)
+3. git branch 
+   * dev 
+     master 
+4. git add -A 
+5. git commit -m 'new branch dev commit' 
+6. git push --set-upstream origin dev 
+   (もしくは、　git push -u origin dev) 
+
+## GitHubでDevブランチをmasterブランチにマージする
+1. codeタグを選択し、ブランチをDevに変更（選択）し、new pull requestボタンをおす。
+2. create pull requestボタンを押す
+3. 
+4. 
+
+
+
+## localでいままで作業していたbranchを削除する 
+1. これで削除できます。これはしなくてもいいですが、
+   開発が進んでいくとbranchが増えてbranch一覧がごちゃごちゃしてくるので 
+   やったほうがいいです。  
+  ```
+  git branch -d new-branch  
+  ```
+
+## 他の人の開発分を取り込む 
+1. masterに他の人が追加した分を自分のところに取り込みます。 
 ```
-$ npx create-nuxt-app nuxt-univ-app1
-? Project name nuxt-univ-app1
-? Project description My peachy Nuxt.js project
-? Use a custom server framework express
-? Choose features to install Axios
-? Use a custom UI framework none
-? Use a custom test framework none
-? Choose rendering mode Universal
-? Author name hiramatsu
-? Choose a package manager npm
-$ cd nuxt-univ-app1
-$ npm run dev
+  git pull origin master  
 ```
-
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install 
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
+## Githubへのpushでusername/passwordの入力対応（https）
+https://did2memo.net/2015/07/26/github-remember-username-https/
+https://garicchi.com/?p=19323
+#usernameの入力省略
+1. リモートリポジトリの接続を確認する
 ```
+$ git remote -v
+origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (fetch)
+origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (push)
+```
+clone時にhttpsのurlでcloneしたのでhttps通信方法になっている。 
+ 
+2. リモートリポジトリを削除する。
+```
+$ git remote rm
+```
+3. リモートリポジトリのurlにユザー名入れて追加する。
+```
+$ git remote add origin https://hiramatsuYoshiaki@github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git
+```
+push時にユザー名は聞かれない。 
+ 
+#usernameの入力省略
+https://help.github.com/en/articles/caching-your-github-password-in-git
+1. パスワードを一定時間保持して、入力を省略する。
+Windows を使っているなら、wincred という補助ツールがあります。 
+Windows Credential Store）で、重要な情報を管理します。 
+```
+$ git config --global credential.helper wincred 
+```
+15分パスワードを保持
+```
+$ git config --global credential.helper wincred cache 'cache --timeout=3600'
+```
+60分パスワードを保持
+ 
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
-*** 
  
 # Firebaseで新規プロジェクトを作成しディプロイする。 
 ## 手動でディプロイする。
@@ -281,127 +350,46 @@ export default firebase
 
 ```
      
-      
-# GitHub 
-## GitHub リポジトリの作成 
-1. GitHub ログイン後のトップページから、Repositories の New ボタンをクリックします。 
-2. Create a new repository の画面に遷移するので、リポジトリ名、ライセンス等を入力。Initialize this repository with a READMEはチェックせず画面下のほうにある Create repository ボタンをクリックします。 
+
  
-## プロジェクトを GitHub に Push する 
-1. git add -A 
-2. git commit -m "first commit" 
-3. git remote add origin https://github.com/hiramatsuYoshiaki/プロジェクト名 
-4. git push -u origin master 
-
-## 現在のブランチから派生ブランチを作成してGitHubへPushする。  
-1. git branch new-branch 
-2. git checkout new-branch 
-3. git branch 
-   * new-branch 
-     master 
-4. git add -A 
-5. git commit -m 'new branch commit' 
-6. git push --set-upstream origin new-branch 
-   (もしくは、　git push -u origin new-branch) 
-
-## GitHubリポジトリをcloneしてローカルプロジェクト作る 
-1. リモートリポジトリをcloneする。 
+# nuxt-univ-app1 
+> My peachy Nuxt.js project
+## reate-nuxt-app
 ```
-    git clone https://github.com/hiramatsuYoshiaki/vue-cli3-app.git  
-```
-2. インストールする  
-```
-    npm install  
-```
-3. サーバーを立ち上げて確認    
-```
-   npm run dev
-```
-4. ローカルサーバーへアクセス 
-```
-   http://localhost:3000/で確認する。 
+$ npx create-nuxt-app nuxt-univ-app1
+? Project name nuxt-univ-app1
+? Project description My peachy Nuxt.js project
+? Use a custom server framework express
+? Choose features to install Axios
+? Use a custom UI framework none
+? Use a custom test framework none
+? Choose rendering mode Universal
+? Author name hiramatsu
+? Choose a package manager npm
+$ cd nuxt-univ-app1
+$ npm run dev
 ```
 
-## ローカルプロジェクトをGitHubへpushする。 
-```
-1. 現在のブランチを確認する。
-   git branch  
-   * master  
-```
-2. masterから新しいbranchを作る  
-```
-　　git branch new-branch   
-```
-3. 新しいbranchに移動し開発を行う。 
-``` 
-   git checkout new-branch  
-   ```
-4. cloneしたリポジトリから別のリモートリポジトリのURLを変更する場合  
-```
-    git remote -v
-    origin  https://github.com/hiramatsuYoshiaki/vue-cli3-unit.git (fetch)  
-    origin  https://github.com/hiramatsuYoshiaki/vue-cli3-unit.git (push)  
-    git remote rm originで現在のリモートリポジトリを削除する  
-    git remote add originで新しいリモートリポジトリを追加する   
-    git remote add origin https://github.com/hiramatsuYoshiaki/vue-cli3-unit-alprime.git
-```
-5. コミットしてGitHubにpushする  
-```
-   git add　-A  
-   git commit -m "コメント"  
-   git push -u origin new-branch  
-```  
+## Build Setup
 
-## localでいままで作業していたbranchを削除する 
-  1.これで削除できます。これはしなくてもいいですが、
-   開発が進んでいくとbranchが増えてbranch一覧がごちゃごちゃしてくるので 
-   やったほうがいいです。  
-  ```
-  git branch -d new-branch  
-  ```
+``` bash
+# install dependencies
+$ npm install 
 
-## 他の人の開発分を取り込む 
-1. masterに他の人が追加した分を自分のところに取り込みます。 
-```
-  git pull origin master  
-```
-## Githubへのpushでusername/passwordの入力対応（https）
-https://did2memo.net/2015/07/26/github-remember-username-https/
-https://garicchi.com/?p=19323
-#usernameの入力省略
-1. リモートリポジトリの接続を確認する
-```
-$ git remote -v
-origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (fetch)
-origin  https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git (push)
-```
-clone時にhttpsのurlでcloneしたのでhttps通信方法になっている。 
- 
-2. リモートリポジトリを削除する。
-```
-$ git remote rm
-```
-3. リモートリポジトリのurlにユザー名入れて追加する。
-```
-$ git remote add origin https://hiramatsuYoshiaki@github.com/hiramatsuYoshiaki/nuxt-univ-firebase-app2.git
-```
-push時にユザー名は聞かれない。 
- 
-#usernameの入力省略
-https://help.github.com/en/articles/caching-your-github-password-in-git
-1. パスワードを一定時間保持して、入力を省略する。
-Windows を使っているなら、wincred という補助ツールがあります。 
-Windows Credential Store）で、重要な情報を管理します。 
-```
-$ git config --global credential.helper wincred 
-```
-15分パスワードを保持
-```
-$ git config --global credential.helper wincred cache 'cache --timeout=3600'
-```
-60分パスワードを保持
- 
+# serve with hot reload at localhost:3000
+$ npm run dev
 
+# build for production and launch server
+$ npm run build
+$ npm start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+*** 
 # nuxt.config.js setting
 > nuxt.config.jsでの導入時の設定
 # eslint

@@ -9,28 +9,36 @@
         Nuxt.js Universal SSR
       </h2>
       <h2 class="subtitle">
-        Circle CI + Firebase
+        Circle CI with Docker + Firebase
       </h2>
-      <h2 class="subtitle">
+      <p class="subtitle">
         Nuxt-univ-firebase-hosting
-      </h2>
-      <h2 class="subtitle">
-        NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
-        NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイする。
-      </h2>
+      </p>
+      <p class="subtitle">
+        NuxtアプリケーションをCircleCIでFirebaseに自動ディプロイ
+      </p>
     </div>
+
+    <transition name="mainCon" appear>
+      <div class="content-logo-section">
+        <img src="~assets/img/logo/circleci.png" alt="circle ci logo">
+        <!-- <img src="~assets/img/logo/docker2.png" alt="circle ci logo"> -->
+        <!-- <img src="~assets/img/logo/firebase.png" alt="circle ci logo"> -->
+      </div>
+    </transition>
     <div class="content">
       <section>
         <a class="github sec-link" href="https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-hosting">
           <h3>GitHub</h3>
-          <div class="word-wrap">hiramatsuYoshiaki/nuxt-univ-firebase-hosting</div>
+          <div class="word-wrap">Repository</div>
+          <div class="word-wrap">https://github.com/hiramatsuYoshiaki/nuxt-univ-firebase-hosting</div>
         </a>
       </section>
       <section>
-        <a class="netlify sec-link" href="https://circleci.com/gh/hiramatsuYoshiaki/">
-          <h3>Circle CI</h3>
-          <div class="word-wrap">hiramatsuYoshiaki</div>
-          <div class="word-wrap">nuxt-univ-firebase-hosting</div>
+        <a class="netlify sec-link" href="https://nuxt-app2.firebaseapp.com/">
+          <h3>Firebase </h3>
+          <div class="word-wrap">Hosting</div>
+          <div class="word-wrap">https://nuxt-app2.firebaseapp.com/</div>
         </a>
       </section>
     </div>
@@ -39,28 +47,7 @@
         <ContentFooter />
       </div>
     </transition>
-    <!-- <div class="content-footer">
-      <nav class="links">
-        <nuxt-link to="/">
-          HOME
-        </nuxt-link>
-        <nuxt-link to="/works" >
-          WORKS
-        </nuxt-link>
-        <nuxt-link to="/about">
-          ABOUT
-        </nuxt-link>
-        <nuxt-link to="/contact">
-          CONTACT
-        </nuxt-link>
-      </nav>
-      <div class="footer-sepalater">
-        <div class="line" />
-      </div>
-      <div>
-        © 2019 h-works.
-      </div>
-    </div> -->
+
     <transition appear name="transitionScreen">
       <TransitionScreen v-if="page === '/'" />
     </transition>
@@ -140,7 +127,7 @@ export default {
 }
 //content -----------------------
 .content{
-  margin-top:2rem;
+  margin-top:4rem;
   display:flex;
   flex-direction: column;
   width: 100%;
@@ -206,6 +193,30 @@ section{
 //   height: 1px;
 //   background-color: #fff;
 // }
+.content-logo-section{
+  width: 100vw;
+  height: 30rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: -5rem;
+  background-color: #fff;
+  margin-top:4rem;
+  padding: 2rem 0;
+  @extend %center;
+  flex-direction: column;
+  img{
+    width: 80%;
+    height: auto;
+  }
+  @media(min-width: 992px){
+    img{
+    width: 20%;
+    height: auto;
+  }
+  }
+}
 .content-footer{
   width: 100vw;
   display:flex;

@@ -3,10 +3,10 @@
     <div class="content-header">
       <logo />
       <h1 class="title">
-        h-works 
+        h-works
       </h1>
       <h2 class="subtitle">
-        Nuxt.js Universal SSR
+        Nuxt.js Universal
       </h2>
       <h2 class="subtitle">
         Circle CI with Docker + Firebase

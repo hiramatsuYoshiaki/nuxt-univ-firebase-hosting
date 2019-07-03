@@ -65,10 +65,10 @@ export default {
   data() {
     return {
       img: require('~/assets/img/fuji1.jpg'),
-      pageTitle: 'Works Content',
-      pageSubTitle: 'Nuxt.js Demo Site',
-      pageDiscription: 'Overview',
-      pageDiscriptionDetail: 'Vue.jsのフレームワークNuxt.jsを使ったデモサイトです。'
+      pageTitle: 'Deploy',
+      pageSubTitle: 'Nuxt.js Auto Deploy',
+      pageDiscription: 'CircleCIとDockerイメージ',
+      pageDiscriptionDetail: 'CIツールとGitHubを連携させて自動ディプロイします。'
     }
   },
   head() {

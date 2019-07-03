@@ -290,11 +290,12 @@ workflows:
   deploy_dev: # ワークフローの名前
     jobs:
       - deploy_dev: # 上で定義したジョブを指定します
-          filters:
+      　　filters:
             branches:
               only: dev # developブランチのみを実行対象とします。今回はdevブランチ
 ```
- 
+詳細はCircleCiリファレンスを参照
+https://circleci.com/docs/ja/2.0/configuration-reference/
 4. developブランチをビルド可能な状態でpushするとジョブが実行されます。
 5. Circle CIのjobs画面で確認できます。 
 6. https://nuxt-app-xxxx.firebaseapp.com/にアクセスしホスティングされていることを確認します。

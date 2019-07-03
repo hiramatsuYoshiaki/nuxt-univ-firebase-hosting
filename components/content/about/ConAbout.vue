@@ -57,7 +57,6 @@
       </div>
     </div>
   </div>
-  </div>
 </template>
 <script>
 // import readMe from '~/assets/readMe/readMe.md'
@@ -81,13 +80,13 @@ export default {
 
       mdDatas: [
         {
-          topMenu: `１．プロジェクトを作るa`,
-          topMenuMd: `１．プロジェクトを作るb`,
+          topMenu: `１．プロジェクトを作る`,
+          topMenuMd: `１．プロジェクトを作る`,
           usages: [
             {
               subMenuId: 1,
-              subMenu: 'ローカルプロジェクトを作るc',
-              title: 'GitHubリポジトリをcloneしてローカルプロジェクト作る。d',
+              subMenu: 'ローカルプロジェクトを作る',
+              title: 'GitHubリポジトリをcloneしてローカルプロジェクト作る。',
               Description: 'hiramatsuYoshiaki/nuxt-univ-app2リポジトリをベースにして、ローカルプロジェクトを新規作成して開発を開始します。e',
               operations: [
                 {
@@ -142,7 +141,7 @@ export default {
             },
             {
               subMenuId: 2,
-              subMenu: 'リモートプロジェクトを作成する。ｃ',
+              subMenu: 'リモートプロジェクトを作成する。',
               title: ' GitHub リポジトリの作成',
               Description: '新規プロジェクト用のリポジトリを作り、チーム開発のバージョン管理を行います。',
               operations: [
@@ -234,8 +233,8 @@ export default {
         },
 
         {
-          topMenu: `２．ホスティングする。`,
-          topMenuMd: `２．ホスティングする。`,
+          topMenu: `２．ホスティングする`,
+          topMenuMd: `２．ホスティングする`,
           usages: [
             {
               subMenuId: 1,
@@ -380,12 +379,12 @@ export default {
 
           ]
         },
-        { topMenu: `３．自動ディプロイ`,
-          topMenuMd: `３．自動ディプロイ`,
+        { topMenu: `３．自動ディプロイする`,
+          topMenuMd: `３．自動ディプロイする`,
           usages: [
             {
               subMenuId: 1,
-              subMenu: 'Circle CIの設定a',
+              subMenu: 'Circle CIの設定',
               title: ' Circle CIで自動ビルド設定する。',
               Description: 'GitHubのDevブランチへpushしたら、Circle CIでFirebaseへ自動でディプロイする',
               operations: [

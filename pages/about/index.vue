@@ -53,9 +53,9 @@ export default {
   data() {
     return {
       img: require('~/assets/img/img2722.jpg'),
-      pageTitle: 'About Content',
+      pageTitle: 'Setting',
       pageSubTitle: 'Demo Site Usage',
-      pageDiscription: 'about setting',
+      pageDiscription: 'Nuxt + CircleCi + Firebase',
       pageDiscriptionDetail: 'デモサイトの簡単なセットアップ方法について'
     }
   },

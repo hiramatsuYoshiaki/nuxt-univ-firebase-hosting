@@ -2,71 +2,90 @@
   <div class="worksIntro">
     <h1>Overview</h1>
     <p>
-      Vue.jsのフレームワークNuxt.jsを使った
-      サーバーサイドレンダリングのデモサイトです。
-      このウェブアプリケーションは、GithubとNetlifyに連携しています。
+      Vue.jsのフレームワークNuxt.jsを使ったデモサイトです。
+      このウェブアプリケーションは、GithubとCircleCIに連携しています。
       Githubのブランチにマージすると、
-      Netlifyは自動的に生成しホスティングされます。
+      CircleCIが自動的でアプリケーションをFirebaseに自動デプロイします。。
     </p>
 
     <div class="flex-container select-mode">
       <div class="two-col">
         <section>
           <div class="mode-text">
-            Nuxt.js + SSR
+            GitHub + CircleCI
           </div>
-          <h5>サーバーサイドレンダリング</h5>
+          <h5>自動ディプロイ</h5>
         </section>
         <section>
-          <h3>サーバーサイドレンダリング（ユニバーサル SSR）</h3>
-          <p>Nuxt.js をプロジェクトの UI レンダリング全体を担うフレームワークとして使うことができます。nuxt コマンドを実行すると開発サーバーが起動します。このサーバーはホットリローディング及び Vue Server Renderer を備えており、アプリケーションが自動的にサーバーサイドレンダリングするよう設定されています。</p>
+          <h3>継続的インテグレーションとは</h3>
+          <p>
+            プログラマーのアプリケーション作成時の品質改善や納期の短縮のためプロセスを自動化すること、具体的には、ビルドやテストなどを継続的に実行していくことで、
+            開発者がソースコードをコミットし、共有しているリポジトリにマージされることでビルドとテストが自動的に実行される手法です。
+            継続的インテグレーションを導入する事により、ソフトウェアのバグを効率的に発見でき、開発者の負担を軽減しながら開発スピードと,コードの品質を向上することが可能です。
+          </p>
         </section>
+
         <section>
-          <h3>静的ファイルの生成</h3>
-          <p>アプリケーションをビルドする際、ルートやストアにあるファイル全てに対し HTML を生成します。</p>
-        </section>
-        <section>
-          <h3>主な機能</h3>
+          <h3>メリット</h3>
           <ul>
-            <li><p>Vue ファイルで記述できること（*.vue）</p></li>
-            <li><p>コードを自動的に分割すること</p></li>
-            <li><p>サーバーサイドレンダリング</p></li>
-            <li><p>非同期データをハンドリングするパワフルなルーティング</p></li>
-            <li><p>静的ファイルの配信</p></li>
-            <li><p>ES2015+ のトランスパイレーション</p></li>
-            <li><p>JS と CSS のバンドル及びミニファイ化</p></li>
-            <li><p>head要素の管理</p></li>
-            <li><p>開発モードにおけるホットリローディング</p></li>
-            <li><p>プリプロセッサ: Sass, Less, Stylus など</p></li>
-            <li><p>HTTP/2 push headers ready</p></li>
-            <li><p>モジュール構造で拡張できること</p></li>
+            <li><p>バグを短時間で発見し、対処することが可能</p></li>
+            <li><p>チームの生産性と効率アップ</p></li>
+            <li><p>品質の高い、安定した製品のリリース</p></li>
           </ul>
+        </section>
+        <section>
+          <div class="mode-text">
+            Docker
+          </div>
+          <h5>ビルド環境</h5>
+        </section>
+        <section>
+          <h3>Dockerとは</h3>
+          <p>Dockerは、開発者やシステム管理者がコンテナを使用してアプリケーションを開発、デプロイ、および実行するためのプラットフォームです。</p>
+        </section>
+        <section>
+          <h3>Docker </h3>
+          <p>
+            CircleCI 2.0はDockerエグゼキュータを使用してビルドサポートを実装します。
+            エグゼキュータは、CI / CDジョブ/設定がCircleCIプラットフォーム内で実行される環境です。
+            Dockerエグゼキュータの設定は、config.ymlビルド構成ファイル内で定義されています。
+          </p>
         </section>
       </div>
       <div class="two-col">
         <section>
           <div class="mode-text">
-            GitHub + netlify
+            Docker Executors
           </div>
-          <h5>バージョン管理と自動ディプロイ</h5>
+          <h5>Dockerエグゼキュータの設定</h5>
         </section>
         <section>
-          <h3>バージョン管理</h3>
-          <p>GitHubを利用することで、プロジェクトマネージャと開発者が一箇所で作業を調整、追跡、および更新するので、プロジェクトは透明でスケジュールどおりに維持されます。</p>
-
-          <p>GitHubを利用することで、すべての作業を視覚化し、プロジェクトボードを使用してコードと並行して優先順位を付けます。リポジトリ内または組織全体で、どのようなタスクが計画されているか、または進行中かを確認できます。</p>
-
-          <p>GitHubを利用することで、チームの連携を強化できます。問題を見つけやすくなります。</p>
+          <h3>Dockerエグゼキュータの設定(config.yml)</h3>
+          <p>
+            CircleCIジョブは、ビルドするために、Dockerエグゼキュータの使用法をconfig.ymlに指定します。
+          </p>
         </section>
         <section>
-          <h3>自動ディプロイ</h3>
-          <p>Netlifyは新しいコミットを検出し、あなたのサイトを自動的に再構築し、そして結果を即時のグローバルアップデートとしてデプロイします。</p>
+          <h3>config.yml</h3>
+          <div v-html="$md.render(config)" />
+        </section>
+        <section>
+          <h3>config.ymlの補足説明</h3>
+          <p><span class="key-bold">version: </span>は、2、2.0、2.1 のうちのどれかを指定します。</p>
+          <p><span class="key-bold">jobs: </span>は、Workflows を利用する際は、ユニークなジョブ名（deploy_dev）を付けます。</p>
+          <p><span class="key-bold">docker: </span>は、docker Executorを使用します。imageには、使用するカスタム Docker イメージの名前を指定します。ローカルの実行環境と同じにします。（node:10.15.3） </p>
+          <p><span class="key-bold">steps: </span>は、ジョブにおける steps の設定は、キーと値のペアを 1 つずつ列挙する形で行います。 </p>
+          <p><span class="key-bold">checkout: </span>は、設定済み path（デフォルトは working_directory）にあるソースコードのチェックアウトに用いる特殊なステップです。単純に checkout する場合は、ステップタイプは属性なしで文字列を記述するだけです。 path が存在し、かつソースコードが git リポジトリの場合は、ステップはリポジトリ全体をクローンせず、オリジナルをプルします。同様の条件で git リポジトリ以外の場合は、このステップは失敗します。 </p>
+          <p><span class="key-bold">run: </span>は、ステップのタイプとなります。 name 属性は CircleCI 上での表示に使われるものです。command 属性は run ステップに特有の、実行するコマンドを定義するものです。</p>
+          <p><span class="key-bold">workflows: </span>は、あらゆるジョブの自動化に用います。Workflow 1 つ 1 つはそれぞれ名前となるキーと、値となるマップからなります。 </p>
+          <p><span class="key-bold">filters: </span>は、は、trigger を定義した config.yml ファイルを含むブランチにおいて、スケジュール実行すべきブランチかどうかを決定するのに使えます。つまり、master ブランチにプッシュすると、master ブランチの Workflows のみをスケジュール実行します。branches では、ブランチ名を指す文字列をマップさせるための only キーが使えます。only の値にマッチするブランチはすべてジョブを実行します。 </p>
         </section>
       </div>
     </div>
   </div>
 </template>
 <script>
+
 export default {
 //   props: {
 //     pageTitle: {
@@ -74,11 +93,48 @@ export default {
 //       default: 'a'
 //     },
 //   }
-//     data() {
-//     return {
-//       active: true
-//     }
-//   },
+  data() {
+    return {
+      config: `
+    version: 2
+    jobs:
+      deploy_dev: # ジョブ名
+        docker:
+          - image: circleci/node:10.15.3 # ジョブ実行環境のDockerイメージを記述
+        steps:
+          - checkout # ソースコードのチェックアウト
+          - run:
+              name: Add env # .envを作成、セキュリティためGitHubにはアップしないため
+              command: |
+                echo "FIREBASE_API_KEY=$FIREBASE_API_KEY" > .env
+                echo "FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN" >> .env
+                echo "FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL" >> .env
+                echo "FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID" >> .env
+                echo "FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET" >> .env
+              # echo "FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID" >> .env
+          - run: # 順に実行したいコマンドとコマンドに名前をつけます
+              name: npm install
+              command: npm i
+          - run:
+              name: build
+              command: npm run generate
+          - run:
+              name: deploy to Firebase Hosting
+              command: ./node_modules/.bin/firebase deploy --project=$FIREBASE_PROJECT_ID --token=$FIREBASE_TOKEN 
+              # プロジェクト上のfirebase-toolsでデプロイします
+
+    workflows:
+      version: 2
+      deploy_dev: # ワークフローの名前
+        jobs:
+          - deploy_dev: # 上で定義したジョブを指定します
+              filters:
+                branches:
+                  only: dev # developブランチのみを実行対象とします。今回はdevブランチ
+`
+
+    }
+  }
 //   computed: {
 //     page() {
 //       return this.$store.state.page
@@ -166,5 +222,9 @@ p{
   @media (min-width: 768px) {
         font-size: 2rem;
     };
+}
+.key-bold{
+  font-weight: 600;
+  color: rgb(16, 98, 3);
 }
 </style>

@@ -32,9 +32,9 @@ export default {
   data() {
     return {
       img: require('~/assets/img/img3668.jpg'),
-      pageTitle: 'Works Content',
+      pageTitle: 'Contact ',
       pageSubTitle: 'Nuxt.js Demo Site',
-      pageDiscription: 'Overview',
+      pageDiscription: 'Contact',
       pageDiscriptionDetail: 'Vue.jsのフレームワークNuxt.jsを使ったデモサイトです。'
 
     }
